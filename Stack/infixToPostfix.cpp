@@ -1,7 +1,6 @@
 #include<iostream>
 #include<stack>
 #include<string>
-#include<algorithm>
 using namespace std;
 
 int presentCharacterPrecedence(char c) {
@@ -16,19 +15,17 @@ int presentCharacterPrecedence(char c) {
     }
 }
 
-string infixToPrefix(string s) {
+string infixToPostfix(string s) {
     stack<char> st;
     string res;
     
-    reverse(s.begin(), s.end());
-
     for(int i=0; i<s.length(); i++) {
         if((s[i]>='a' && s[i]<='z') || (s[i]>='A' && s[i]<='Z')) {
             res+=s[i];
-        } else if(s[i]==')') {
-            st.push(s[i]);
         } else if(s[i]=='(') {
-            while(!st.empty() && st.top()!=')') {
+            st.push(s[i]);
+        } else if(s[i]==')') {
+            while(!st.empty() && st.top()!='(') {
                 res+=st.top();
                 st.pop();
             }
@@ -36,7 +33,7 @@ string infixToPrefix(string s) {
                 st.pop();
             }
         } else {
-            while(!st.empty() && presentCharacterPrecedence(st.top())>=presentCharacterPrecedence(s[i])) {
+            while(!st.empty() && presentCharacterPrecedence(st.top())>presentCharacterPrecedence(s[i])) {
                 res+=st.top();
                 st.pop();
             }
@@ -47,16 +44,13 @@ string infixToPrefix(string s) {
         res+=st.top();
         st.pop();
     }
-
-    reverse(res.begin(), res.end());
-    
     return res;
 }
 
 int main() {
-    string str = "(a-b/c)*(a/k-l)";
+    string str = "a+(b*c+(d/e^f)*g)*h";
     
-    cout<<infixToPrefix(str);
+    cout<<infixToPostfix(str);
 
     return 0;
 }
