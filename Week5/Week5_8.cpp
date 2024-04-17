@@ -32,11 +32,9 @@ Node* moveToFront(Node* head) {
         temp = temp->next;
     }
     prev = temp->next;
-    // cout<<prev->next;
     prev->next = head;
     head = prev;
     temp->next = nullptr;
-    // head = temp->next->next;
 
     return head;
 }

@@ -46,15 +46,15 @@ int middleNode(Node* head) {
 }
 
 int main() {
-    // Node* x3 = new Node(3);
-    // Node* x2 = new Node(2, x3);
-    // Node* x1 = new Node(1, x2);
-    // Node* head = x1;
-    Node* x4 = new Node(4);
-    Node* x3 = new Node(3, x4);
+    Node* x3 = new Node(3);
     Node* x2 = new Node(2, x3);
     Node* x1 = new Node(1, x2);
     Node* head = x1;
+    // Node* x4 = new Node(4);
+    // Node* x3 = new Node(3, x4);
+    // Node* x2 = new Node(2, x3);
+    // Node* x1 = new Node(1, x2);
+    // Node* head = x1;
 
     print(head);
     cout<<"The middle node is : "<<middleNode(head);

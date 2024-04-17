@@ -110,7 +110,7 @@ void infixToPostfix(string str) {
 };
 
 int main() {
-    string str = "3+2*1";
+    string str = "(a+b/c)*(l-m/k)";
     infixToPostfix(str);
     
     return 0;

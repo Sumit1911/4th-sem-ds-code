@@ -37,8 +37,7 @@ void print(Node* head) {
 
 void intersect(Node* head1, Node* head2, int pos) {
     Node* temp1 = head1;
-    pos--;
-    while(pos--) {
+    while(--pos) {
         temp1 = temp1->next;
     }
     Node* temp2 = head2;
@@ -65,15 +64,14 @@ int intersectionLL(Node* head1, Node* head2) {
         temp2 = head1;
     }
 
-    while(dis) {
+    while(dis--) {
         temp1 = temp1->next;
         if(temp1 == nullptr) {
             return -1;
         }
-        dis--;
     }
     while(temp1 != nullptr && temp2 != nullptr) {
-        if(temp1 == temp2) {
+        if(temp1->data == temp2->data) {
             return temp1->data;
         }
         temp1 = temp1->next;
