@@ -68,7 +68,7 @@ int intersectionLL(Node* head1, Node* head2) {
         temp1 = temp1->next;
         if(temp1 == nullptr) {
             return -1;
-        }
+        } 
     }
     while(temp1 != nullptr && temp2 != nullptr) {
         if(temp1->data == temp2->data) {

@@ -1,153 +1,116 @@
-// C++ program to Implement a stack
-// using singly linked list
-#include <bits/stdc++.h>
+#include<iostream>
 using namespace std;
 
-// creating a linked list;
-class Node {
-public:
-	int data;
-	Node* link;
-
-	// Constructor
-	Node(int n)
-	{
-		this->data = n;
-		this->link = NULL;
-	}
-};
-
 class Stack {
-	Node* top;
-
 public:
-	Stack() { top = NULL; }
+    int *arr;
+    int stackSize, top;
 
-	void push(int data)
-	{
+    Stack(int size) {
+        stackSize = size;
+        arr = new int[size];
+        top = -1;
+    }
 
-		// Create new node temp and allocate memory in heap
-		Node* temp = new Node(data);
+    void push(int elem) {
+        if(top < stackSize - 1) {
+            arr[++top] = elem;
+        } else {
+            cout<<"Stack Overflow"<<endl;
+        }
+    }
 
-		// Check if stack (heap) is full.
-		// Then inserting an element would
-		// lead to stack overflow
-		if (!temp) {
-			cout << "\nStack Overflow";
-			exit(1);
-		}
+    void pop() {
+        if(top >= 0) {
+            top--;
+        } else {
+            cout<<"Stack is empty"<<endl;
+        }
+    }
 
-		// Initialize data into temp data field
-		temp->data = data;
+    int peek() {
+        if(top >= 0) {
+            return arr[top];
+        } else {
+            cout<<"Stack is empty"<<endl;
+            return -1;
+        }
+    }
 
-		// Put top pointer reference into temp link
-		temp->link = top;
-
-		// Make temp as top of Stack
-		top = temp;
-	}
-
-	// Utility function to check if
-	// the stack is empty or not
-	bool isEmpty()
-	{
-		// If top is NULL it means that
-		// there are no elements are in stack
-		return top == NULL;
-	}
-
-	// Utility function to return top element in a stack
-	int peek()
-	{
-		// If stack is not empty , return the top element
-		if (!isEmpty())
-			return top->data;
-		else
-			exit(1);
-	}
-
-	// Function to remove
-	// a key from given queue q
-	void pop()
-	{
-		Node* temp;
-
-		// Check for stack underflow
-		if (top == NULL) {
-			cout << "\nStack Underflow" << endl;
-			exit(1);
-		}
-		else {
-
-			// Assign top to temp
-			temp = top;
-
-			// Assign second node to top
-			top = top->link;
-
-			// This will automatically destroy
-			// the link between first node and second node
-
-			// Release memory of top node
-			// i.e delete the node
-			free(temp);
-		}
-	}
-
-	// Function to print all the
-	// elements of the stack
-	void display()
-	{
-		Node* temp;
-
-		// Check for stack underflow
-		if (top == NULL) {
-			cout << "\nStack Underflow";
-			exit(1);
-		}
-		else {
-			temp = top;
-			while (temp != NULL) {
-
-				// Print node data
-				cout << temp->data;
-
-				// Assign temp link to temp
-				temp = temp->link;
-				if (temp != NULL)
-					cout << " -> ";
-			}
-		}
-	}
+    bool isEmpty() {
+        return top == -1;
+    }
 };
 
-// Driven Program
-int main()
-{
-	// Creating a stack
-	Stack s;
+class Queue{
+public:
+    int *arr;
+    int size;
+    int front, rear;
 
-	// Push the elements of stack
-	s.push(11);
-	s.push(22);
-	s.push(33);
-	s.push(44);
+    Queue(int size) {
+        arr = new int[size];
+        this->size = size;
+        front = 0;
+        rear = 0;
+    }
 
-	// Display stack elements
-	s.display();
+    void enqueue(int element) {
+        rear = (rear + 1) % size;
+        if(front == rear) {
+            cout<<"Queue Overflow"<<endl;
+            rear = (rear == 0) ? size - 1 : rear - 1;
+        } else {
+            arr[rear] = element;
+        }
+    }
 
-	// Print top element of stack
-	cout << "\nTop element is " << s.peek() << endl;
+    int dequeue() {
+        if(front == rear) {
+            cout<<"Queue Underflow"<<endl;
+            return -1;
+        } else {
+            front = (front + 1) % size;
+            int item = arr[front];
+            return item;
+        }
+    }
 
-	// Delete top elements of stack
-	s.pop();
-	s.pop();
+    int frontQ() {
+        if(front == rear) {
+            cout<<"Queue is empty"<<endl;
+            return -1;
+        } else {
+            return arr[(front + 1) % size];
+        }
+    }
 
-	// Display stack elements
-	s.display();
+    bool isEmpty() {
+        return front == rear;
+    }
+};
 
-	// Print top element of stack
-	cout << "\nTop element is " << s.peek() << endl;
+int main() {
+    Stack s(5);
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    cout<<"Before Reverse : ";
+    cout<<s.peek()<<" "; s.pop();
+    cout<<s.peek()<<" "; s.pop();
+    cout<<s.peek(); cout<<endl;
 
-	return 0;
+    Queue q(5);
+    while(!s.isEmpty()) {
+        q.enqueue(s.peek());
+        s.pop();
+    }
+
+    cout<<"After Reverse : ";
+    while(!q.isEmpty()) {
+        cout<<q.dequeue()<<" ";
+    }
+    cout<<endl;
+
+    return 0;
 }

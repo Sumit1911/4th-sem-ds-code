@@ -73,10 +73,12 @@ bool validString(string str) {
 }
 
 int main() {
-    if(validString("[{()}]")) {
+    string str = "[{)}]";
+    cout<<"Given String : "<<str<<endl;
+    if(validString(str)) {
         cout<<"Valid String!"<<endl;
     } else {
-        cout<<"Invalid String!"<<endl;
+        cout<<"Result : Invalid String!"<<endl;
     }
     
     

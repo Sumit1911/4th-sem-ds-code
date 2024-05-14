@@ -105,7 +105,8 @@ int postfixEval(string str) {
 
 int main() {
     string str = "46+2/5*9";
-    cout<<postfixEval(str);
+    cout<<"Postfix Expression : "<<str<<endl;
+    cout<<"Postfix Evaluation : "<<postfixEval(str);
     
     return 0;
 }

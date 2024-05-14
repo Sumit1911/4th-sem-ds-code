@@ -86,7 +86,10 @@ bool checkString(string str1, string str2) {
 }
 
 int main() {
-    int result = checkString("abb#c", "abc");
+    string str1 = "abb##c";
+    string str2 = "abc";
+    cout<<"First string : "<<str1<<endl<<"Second string : "<<str2<<endl;
+    int result = checkString(str1, str2);
     if(result == 1) {
         cout<<"Both String are equal!"<<endl;
     } else {

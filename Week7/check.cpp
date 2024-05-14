@@ -28,9 +28,9 @@ class Stack {
 	void push(int data) {
 		Node* temp = new Node(data);
 		if(temp == nullptr) {
-			cout<<"Stack Overflow!"<<endl;
+			cout<<"Stack Underflow"<<endl;
 			return;
-		}
+		} 
 		if(top == nullptr) {
 			temp->data = data;
 			temp->next = top;
@@ -54,21 +54,21 @@ class Stack {
 	}
 
 	void pop() {
-		if(peek() >= minEle) {
+		if(peek()>=minEle) {
 			minEle = minEle;
 		} else {
 			minEle = 2*minEle - peek();
 		}
+		top = top->next;
 	}
 
 	void getMin() {
 		if(top == nullptr) {
-			cout<<"Stack is Empty!";
+			cout<<"Stack is Underflow"<<endl;
 		} else {
-			cout<<"Min Elem in the Stack : "<<minEle<<endl;
+			cout<<"MinElem : "<<minEle<<endl;
 		}
 	}
-	
 };
 
 int main() {
@@ -78,6 +78,11 @@ int main() {
 	s.push(5);
 	s.push(2);
 	s.push(1);
+	s.getMin();
+
+	s.pop();
+	s.getMin();
+	s.pop();
 	s.getMin();
 
 	return 0;

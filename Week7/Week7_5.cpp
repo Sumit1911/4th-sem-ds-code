@@ -59,6 +59,7 @@ class Stack {
 		} else {
 			minEle = 2*minEle - peek();
 		}
+		top = top->next;
 	}
 
 	void getMin() {

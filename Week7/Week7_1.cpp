@@ -111,6 +111,8 @@ void infixToPostfix(string str) {
 
 int main() {
     string str = "(a+b/c)*(l-m/k)";
+    cout<<"Infix : "<<str<<endl;
+    cout<<"Postfix : ";
     infixToPostfix(str);
     
     return 0;
