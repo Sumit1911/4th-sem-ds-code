@@ -28,6 +28,7 @@ class Stack {
         Node* temp = new Node(data);
         if(temp == nullptr) {
             cout<<"Stack Overflow"<<endl;
+            return;
         } 
         temp->data = data;
         temp->next = top;
